@@ -88,7 +88,7 @@ The library's components suitable for consumption are
 <?php
 $logger = new \Psr\Log\NullLogger();
 $serviceFactory = new \PostDirekt\Sdk\Autocomplete\Authentication\Service\ServiceFactory();
-$authService = $serviceFactory->createAuthenticationService($logger);
+$authService = $serviceFactory->createAuthenticationService('username', 'password', $logger);
 
-$token = $authService->authenticate('username', 'password');
+$token = $authService->authenticate();
 ```
