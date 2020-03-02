@@ -2,8 +2,10 @@
 
 The Autocomplete API makes address input easy for you and your customers with the automatic completion of postal data.
 
-This SDK can be used to generate an API token. It does not offer Autocompletion functionality itself.
-It is designed to be used in conjunction with a JavaScript SDK to offer Autocompletion functionality.
+This SDK can only be used to generate API tokens for DATAFACTORY Autocomplete.
+and does not offer any autocompletion functionality.
+It is designed to be used together with a separate frontend library or SDK to offer Autocompletion functionality,
+for example `@postdirekt/autocomplete-sdk` or `@postdirekt/autocomplete-library` on [npm](https://www.npmjs.com).
 
 ## Requirements
 
@@ -13,7 +15,6 @@ It is designed to be used in conjunction with a JavaScript SDK to offer Autocomp
 
 ### Package Requirements
 
-- `netresearch/jsonmapper`: Mapper for unserializing JSON response messages into PHP objects
 - `php-http/discovery`: Discovery service for HTTP client and message factory implementations
 - `php-http/httplug`: Pluggable HTTP client abstraction
 - `php-http/logger-plugin`: HTTP client logger plugin for HTTPlug
@@ -24,9 +25,10 @@ It is designed to be used in conjunction with a JavaScript SDK to offer Autocomp
 
 ### Virtual Package Requirements
 
-- `php-http/client-implementation`: Any package that provides a HTTPlug HTTP client
-- `php-http/message-factory-implementationn`: Any package that provides HTTP message factories
+- `psr/http-client-implementation`: Any package that provides a PSR-18 compatible HTTP client
+- `psr/http-factory-implementation`: Any package that provides PSR-7 compatible HTTP message factories
 - `psr/http-message-implementation`: Any package that provides PSR-7 HTTP messages
+- `psr/log-implementation`: Any package that provides a PSR-3 logger
 
 ### Development Package Requirements
 
