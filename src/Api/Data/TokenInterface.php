@@ -24,7 +24,7 @@ interface TokenInterface
     public function getAccessToken(): string;
 
     /**
-     * The time the token expires at in unix/epoch time
+     * The token expiry timestamp (unix/epoch time), in seconds.
      *
      * @return int
      */

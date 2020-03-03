@@ -13,7 +13,6 @@ use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\PluginClient;
-use Http\Discovery\Exception\NotFoundException;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\BasicAuth;
 use Http\Message\Formatter\FullHttpMessageFormatter;
@@ -27,7 +26,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Class HttpServiceFactory
  *
- * Creates preconfigured HTTP client
+ * Creates service instance with given HTTP client and default plugins.
  *
  * @author Paul Siedler <paul.siedler@netresearch.de>
  * @author Sebastian Ertner <sebastian.ertner@netresearch.de>
@@ -50,38 +49,28 @@ class HttpServiceFactory implements ServiceFactoryInterface
         $this->httpClient = $httpClient;
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     * @param LoggerInterface $logger
-     * @return AuthenticationServiceInterface
-     * @throws ServiceException
-     */
     public function createAuthenticationService(
         string $username,
         string $password,
         LoggerInterface $logger
     ): AuthenticationServiceInterface {
         $plugins = [
-            new ErrorPlugin(),
             new AuthenticationPlugin(new BasicAuth($username, $password)),
             new LoggerPlugin($logger, new FullHttpMessageFormatter(null)),
+            new ErrorPlugin(),
             new HeaderDefaultsPlugin([
                 'Accept' => 'application/json',
-                'Charset' => 'UTF-8'
+                'Charset' => 'UTF-8',
             ])
         ];
-        $client = new PluginClient($this->httpClient, $plugins);
 
         try {
+            $client = new PluginClient($this->httpClient, $plugins);
             $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
-        } catch (NotFoundException $exception) {
+
+            return new AuthenticationService($client, $requestFactory);
+        } catch (\Exception $exception) {
             throw new ServiceException($exception->getMessage(), $exception->getCode(), $exception);
         }
-
-        return new AuthenticationService(
-            $client,
-            $requestFactory
-        );
     }
 }

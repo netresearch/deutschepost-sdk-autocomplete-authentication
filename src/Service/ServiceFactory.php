@@ -19,18 +19,13 @@ use Psr\Log\LoggerInterface;
 /**
  * Class ServiceFactory
  *
+ * Creates service instance.
+ *
  * @author Max Melzer <max.melzer@netresearch.de>
  * @link https://www.netresearch.de/
  */
 class ServiceFactory implements ServiceFactoryInterface
 {
-    /**
-     * @param string $username
-     * @param string $password
-     * @param LoggerInterface $logger
-     * @return AuthenticationServiceInterface
-     * @throws ServiceException
-     */
     public function createAuthenticationService(
         string $username,
         string $password,

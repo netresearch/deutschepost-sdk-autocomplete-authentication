@@ -40,17 +40,11 @@ class Token implements TokenInterface
         $this->expiresAt = $expiresAt;
     }
 
-    /**
-     * @return string
-     */
     public function getAccessToken(): string
     {
         return $this->accessToken;
     }
 
-    /**
-     * @return int
-     */
     public function getExpiresAt(): int
     {
         return $this->expiresAt;

@@ -13,7 +13,6 @@ use Http\Mock\Client;
 use PHPUnit\Framework\TestCase;
 use PostDirekt\Sdk\Autocomplete\Authentication\Exception\ServiceException;
 use PostDirekt\Sdk\Autocomplete\Authentication\Http\HttpServiceFactory;
-use PostDirekt\Sdk\Autocomplete\Authentication\Test\Expectation\AuthenticationService;
 use Psr\Log\Test\TestLogger;
 
 /**
@@ -25,10 +24,13 @@ class AuthenticationServiceTest extends TestCase
 {
     /**
      * @test
-     * @throws \PostDirekt\Sdk\Autocomplete\Authentication\Exception\ServiceException
+     * @throws ServiceException
      */
     public function basicAuthenticationSucceeds()
     {
+        $statusCode = 200;
+        $reasonPhrase = 'OK';
+
         $logger = new TestLogger();
         $httpClient = new Client();
         $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
@@ -37,7 +39,7 @@ class AuthenticationServiceTest extends TestCase
         $responseData = ['access_token' => 'token', 'expires_in_epoch_seconds' => 1579179612];
         $responseBody = json_encode($responseData);
         $response = $responseFactory
-            ->createResponse(200, 'OK')
+            ->createResponse($statusCode, $reasonPhrase)
             ->withBody($streamFactory->createStream($responseBody));
 
         $httpClient->setDefaultResponse($response);
@@ -47,10 +49,12 @@ class AuthenticationServiceTest extends TestCase
 
         $result = $authService->authenticate();
 
-        $this->assertEquals($responseData['access_token'], $result->getAccessToken());
-        $this->assertEquals($responseData['expires_in_epoch_seconds'], $result->getExpiresAt());
+        self::assertEquals($responseData['access_token'], $result->getAccessToken());
+        self::assertEquals($responseData['expires_in_epoch_seconds'], $result->getExpiresAt());
 
-        AuthenticationService::assertCommunicationLogged($responseBody, $logger);
+        $statusRegex = sprintf('|^HTTP/\d\.\d\s%s %s$|m', $statusCode, $reasonPhrase);
+        self::assertTrue($logger->hasInfoThatMatches($statusRegex), 'Logged messages do not contain status code.');
+        self::assertTrue($logger->hasInfoThatContains($responseBody), 'Logged messages do not contain response');
     }
 
     /**
@@ -59,24 +63,32 @@ class AuthenticationServiceTest extends TestCase
      */
     public function basicAuthenticationFails()
     {
+        $statusCode = 401;
+        $reasonPhrase = 'Unauthorized';
+
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode($statusCode);
+        $this->expectExceptionMessage($reasonPhrase);
+
         $logger = new TestLogger();
         $httpClient = new Client();
         $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
-        $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
 
-        $responseBody = '';
         $response = $responseFactory
-            ->createResponse(401, 'Unauthorized')
-            ->withAddedHeader('Content-Type', 'text/plain')
-            ->withBody($streamFactory->createStream($responseBody));
+            ->createResponse($statusCode, $reasonPhrase)
+            ->withAddedHeader('Content-Type', 'text/plain');
         $httpClient->setDefaultResponse($response);
 
         $serviceFactory = new HttpServiceFactory($httpClient);
         $authService = $serviceFactory->createAuthenticationService('user', 'password', $logger);
+
         try {
-            $result = $authService->authenticate();
+            $authService->authenticate();
         } catch (ServiceException $exception) {
-            AuthenticationService::assertCommunicationLogged($responseBody, $logger);
+            $statusRegex = sprintf('|^HTTP/\d\.\d\s%s %s$|m', $statusCode, $reasonPhrase);
+            self::assertTrue($logger->hasErrorThatMatches($statusRegex), 'Logged messages do not contain status code.');
+
+            throw $exception;
         }
     }
 }

@@ -1,11 +1,13 @@
 # Deutsche Post Direkt DATAFACTORY Autocomplete 2.0 API Authentication SDK
 
-The Autocomplete API makes address input easy for you and your customers with the automatic completion of postal data.
+The Autocomplete API makes address input easy for you and your customers with
+the automatic completion of postal data.
 
-This SDK can only be used to generate API tokens for DATAFACTORY Autocomplete.
-and does not offer any autocompletion functionality.
-It is designed to be used together with a separate frontend library or SDK to offer Autocompletion functionality,
-for example `@postdirekt/autocomplete-sdk` or `@postdirekt/autocomplete-library` on [npm](https://www.npmjs.com).
+This SDK can be used to generate API tokens for DATAFACTORY Autocomplete
+web service access. It does not connect to autocompletion endpoints.
+Instead, the generated token can be used together with a separate frontend
+library or SDK, for example `@postdirekt/autocomplete-sdk` or
+`@postdirekt/autocomplete-library` on [npm](https://www.npmjs.com).
 
 ## Requirements
 
@@ -18,8 +20,8 @@ for example `@postdirekt/autocomplete-sdk` or `@postdirekt/autocomplete-library`
 - `php-http/discovery`: Discovery service for HTTP client and message factory implementations
 - `php-http/httplug`: Pluggable HTTP client abstraction
 - `php-http/logger-plugin`: HTTP client logger plugin for HTTPlug
-- `php-http/message`: Message factory implementations & message formatter for logging
-- `php-http/message-factory`: HTTP message factory interfaces
+- `psr/http-client`: PSR-18 HTTP client interfaces
+- `psr/http-factory`: PSR-7 HTTP message factory interfaces
 - `psr/http-message`: PSR-7 HTTP message interfaces
 - `psr/log`: PSR-3 logger interfaces
 
@@ -28,11 +30,10 @@ for example `@postdirekt/autocomplete-sdk` or `@postdirekt/autocomplete-library`
 - `psr/http-client-implementation`: Any package that provides a PSR-18 compatible HTTP client
 - `psr/http-factory-implementation`: Any package that provides PSR-7 compatible HTTP message factories
 - `psr/http-message-implementation`: Any package that provides PSR-7 HTTP messages
-- `psr/log-implementation`: Any package that provides a PSR-3 logger
 
 ### Development Package Requirements
 
-- `guzzlehttp/psr7`: PSR-7 HTTP message implementation
+- `nyholm/psr7`: PSR-7 HTTP message factory & message implementation
 - `phpunit/phpunit`: Testing framework
 - `php-http/mock-client`: HTTPlug mock client implementation
 - `phpstan/phpstan`: Static analysis tool
