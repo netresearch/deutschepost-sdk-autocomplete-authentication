@@ -1,5 +1,5 @@
 {
-    "name": "postdirekt/sdk-api-autocomplete-authentication",
+    "name": "deutschepost/sdk-api-autocomplete-authentication",
     "description": "Deutsche Post Direkt Addressfactory Autocomplete Authentication SDK",
     "type": "library",
     "license": "MIT",

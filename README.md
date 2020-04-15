@@ -6,8 +6,8 @@ the automatic completion of postal data.
 This SDK can be used to generate API tokens for DATAFACTORY Autocomplete
 web service access. It does not connect to autocompletion endpoints.
 Instead, the generated token can be used together with a separate frontend
-library or SDK, for example `@postdirekt/autocomplete-sdk` or
-`@postdirekt/autocomplete-library` on [npm](https://www.npmjs.com).
+library or SDK, for example [@netresearch/postdirekt-autocomplete-sdk](https://www.npmjs.com/package/@netresearch/postdirekt-autocomplete-sdk) or
+[@netresearch/postdirekt-autocomplete-library](https://www.npmjs.com/package/@netresearch/postdirekt-autocomplete-library).
 
 ## Requirements
 
@@ -42,13 +42,13 @@ library or SDK, for example `@postdirekt/autocomplete-sdk` or
 ## Installation
 
 ```bash
-$ composer require postdirekt/sdk-api-autocomplete-authentication
+$ composer require deutschepost/sdk-api-autocomplete-authentication
 ```
 
 ## Uninstallation
 
 ```bash
-$ composer remove postdirekt/sdk-api-autocomplete-authentication
+$ composer remove deutschepost/sdk-api-autocomplete-authentication
 ```
 
 ## Testing
