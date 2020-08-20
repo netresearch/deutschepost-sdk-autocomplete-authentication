@@ -1,19 +1,13 @@
 <?php
 
 /**
- * See LICENSE.md for license details.
+ * See LICENSE.txt for license details.
  */
 
 declare(strict_types=1);
 
 namespace PostDirekt\Sdk\Autocomplete\Authentication\Api\Data;
 
-/**
- * Interface TokenInterface
- *
- * @author Paul Siedler <paul.siedler@netresearch.de>
- * @link https://www.netresearch.de/
- */
 interface TokenInterface
 {
     /**

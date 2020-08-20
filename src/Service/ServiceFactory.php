@@ -1,7 +1,7 @@
 <?php
 
 /**
- * See LICENSE.md for license details.
+ * See LICENSE.txt for license details.
  */
 
 declare(strict_types=1);
@@ -16,14 +16,6 @@ use PostDirekt\Sdk\Autocomplete\Authentication\Exception\ServiceException;
 use PostDirekt\Sdk\Autocomplete\Authentication\Http\HttpServiceFactory;
 use Psr\Log\LoggerInterface;
 
-/**
- * Class ServiceFactory
- *
- * Creates service instance.
- *
- * @author Max Melzer <max.melzer@netresearch.de>
- * @link https://www.netresearch.de/
- */
 class ServiceFactory implements ServiceFactoryInterface
 {
     public function createAuthenticationService(

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * See LICENSE.md for license details.
+ * See LICENSE.txt for license details.
  */
 
 declare(strict_types=1);
@@ -15,11 +15,6 @@ use PostDirekt\Sdk\Autocomplete\Authentication\Exception\ServiceException;
 use PostDirekt\Sdk\Autocomplete\Authentication\Http\HttpServiceFactory;
 use Psr\Log\Test\TestLogger;
 
-/**
- * Class AuthenticationServiceTest
- *
- * @author Max Melzer <max.melzer@netresearch.de>
- */
 class AuthenticationServiceTest extends TestCase
 {
     /**

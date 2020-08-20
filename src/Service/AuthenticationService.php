@@ -1,7 +1,7 @@
 <?php
 
 /**
- * See LICENSE.md for license details.
+ * See LICENSE.txt for license details.
  */
 
 declare(strict_types=1);
@@ -15,12 +15,6 @@ use PostDirekt\Sdk\Autocomplete\Authentication\Model\Token;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
-/**
- * Class AuthenticationService
- *
- * @author Paul Siedler <paul.siedler@netresearch.de>
- * @link https://www.netresearch.de/
- */
 class AuthenticationService implements AuthenticationServiceInterface
 {
     private const URL = 'https://autocomplete2.postdirekt.de/autocomplete2/token';
@@ -35,12 +29,6 @@ class AuthenticationService implements AuthenticationServiceInterface
      */
     private $requestFactory;
 
-    /**
-     * AuthenticationService constructor.
-     *
-     * @param ClientInterface $client
-     * @param RequestFactoryInterface $requestFactory
-     */
     public function __construct(ClientInterface $client, RequestFactoryInterface $requestFactory)
     {
         $this->client = $client;

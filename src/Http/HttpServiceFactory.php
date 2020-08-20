@@ -1,7 +1,7 @@
 <?php
 
 /**
- * See LICENSE.md for license details.
+ * See LICENSE.txt for license details.
  */
 
 declare(strict_types=1);
@@ -27,10 +27,6 @@ use Psr\Log\LoggerInterface;
  * Class HttpServiceFactory
  *
  * Creates service instance with given HTTP client and default plugins.
- *
- * @author Paul Siedler <paul.siedler@netresearch.de>
- * @author Sebastian Ertner <sebastian.ertner@netresearch.de>
- * @link https://www.netresearch.de/
  */
 class HttpServiceFactory implements ServiceFactoryInterface
 {
@@ -39,11 +35,6 @@ class HttpServiceFactory implements ServiceFactoryInterface
      */
     private $httpClient;
 
-    /**
-     * HttpServiceFactory constructor.
-     *
-     * @param ClientInterface $httpClient
-     */
     public function __construct(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
