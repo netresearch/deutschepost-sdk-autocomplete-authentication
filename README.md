@@ -13,7 +13,7 @@ library or SDK, for example [@netresearch/postdirekt-autocomplete-sdk](https://w
 
 ### System Requirements
 
-- PHP 7.1+ with JSON extension
+- PHP 7.1+ and 8.0+ with JSON extension
 
 ### Package Requirements
 

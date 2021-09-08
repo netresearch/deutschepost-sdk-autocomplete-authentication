@@ -16,7 +16,7 @@
         "sdk"
     ],
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.1.3 | ^8.0",
         "ext-json": "*",
         "php-http/discovery": "^1.0.0",
         "php-http/httplug": "^2.0.0",
@@ -48,7 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-PDTWO-133": "1.1.x-dev"
+            "dev-PDTWO-110": "1.1.x-dev"
         }
     }
 }
