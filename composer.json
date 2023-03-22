@@ -16,7 +16,7 @@
         "sdk"
     ],
     "require": {
-        "php": "^7.1.3 | ^8.0",
+        "php": "^8.1",
         "ext-json": "*",
         "php-http/discovery": "^1.0.0",
         "php-http/httplug": "^2.0.0",
@@ -27,14 +27,16 @@
         "psr/http-factory-implementation": "^1.0.0",
         "psr/http-message": "^1.0.0",
         "psr/http-message-implementation": "^1.0.0",
-        "psr/log": "^1.1.0"
+        "psr/log": "^1.1.0 || ^2.0.0 || ^3.0.0"
     },
     "require-dev": {
         "nyholm/psr7": "^1.0.0",
-        "phpunit/phpunit": "^6.5.0 || ^9.0.0",
-        "php-http/mock-client": "dev-upgrade-version-2",
-        "phpstan/phpstan": "^0.12.2",
-        "squizlabs/php_codesniffer": "^3.4"
+        "fig/log-test": "^1.1",
+        "phpunit/phpunit": "^9.5.0",
+        "php-http/mock-client": "^1.5.0",
+        "phpstan/phpstan": "^1.0.0",
+        "squizlabs/php_codesniffer": "^3.4",
+        "rector/rector": "^0.15.21"
     },
     "autoload": {
         "psr-4": {
@@ -48,7 +50,17 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-PDTWO-110": "1.1.x-dev"
+            "dev-develop": "1.2.0.x-dev"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    },
+    "scripts": {
+        "test": "phpunit -c test/phpunit.xml",
+        "phpstan": "phpstan --xdebug analyze src",
+        "lint": "phpcs --standard=PSR12 src test"
     }
 }

@@ -19,20 +19,10 @@ class AuthenticationService implements AuthenticationServiceInterface
 {
     private const URL = 'https://autocomplete2.postdirekt.de/autocomplete2/token';
 
-    /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
-     * @var RequestFactoryInterface
-     */
-    private $requestFactory;
-
-    public function __construct(ClientInterface $client, RequestFactoryInterface $requestFactory)
-    {
-        $this->client = $client;
-        $this->requestFactory = $requestFactory;
+    public function __construct(
+        private readonly ClientInterface $client,
+        private readonly RequestFactoryInterface $requestFactory
+    ) {
     }
 
     public function authenticate(): TokenInterface
@@ -40,7 +30,7 @@ class AuthenticationService implements AuthenticationServiceInterface
         try {
             $httpRequest = $this->requestFactory->createRequest('GET', self::URL);
             $response = $this->client->sendRequest($httpRequest);
-            $responseData = json_decode((string) $response->getBody(), true);
+            $responseData = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
             return new Token($responseData['access_token'], $responseData['expires_in_epoch_seconds']);
         } catch (\Throwable $exception) {

@@ -14,10 +14,6 @@ use Psr\Log\LoggerInterface;
 interface ServiceFactoryInterface
 {
     /**
-     * @param string $username
-     * @param string $password
-     * @param LoggerInterface $logger
-     * @return AuthenticationServiceInterface
      * @throws ServiceException
      */
     public function createAuthenticationService(

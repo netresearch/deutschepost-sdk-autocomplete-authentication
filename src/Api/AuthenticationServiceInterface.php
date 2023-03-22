@@ -16,7 +16,6 @@ interface AuthenticationServiceInterface
     /**
      * Request an authentication token.
      *
-     * @return TokenInterface
      * @throws ServiceException
      */
     public function authenticate(): TokenInterface;

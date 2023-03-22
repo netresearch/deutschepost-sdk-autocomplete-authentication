@@ -12,20 +12,8 @@ use PostDirekt\Sdk\Autocomplete\Authentication\Api\Data\TokenInterface;
 
 class Token implements TokenInterface
 {
-    /**
-     * @var string
-     */
-    private $accessToken;
-
-    /**
-     * @var int
-     */
-    private $expiresAt;
-
-    public function __construct(string $accessToken, int $expiresAt)
+    public function __construct(private readonly string $accessToken, private readonly int $expiresAt)
     {
-        $this->accessToken = $accessToken;
-        $this->expiresAt = $expiresAt;
     }
 
     public function getAccessToken(): string

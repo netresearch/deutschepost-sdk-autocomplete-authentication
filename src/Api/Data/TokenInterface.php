@@ -12,15 +12,11 @@ interface TokenInterface
 {
     /**
      * The access token itself
-     *
-     * @return string
      */
     public function getAccessToken(): string;
 
     /**
      * The token expiry timestamp (unix/epoch time), in seconds.
-     *
-     * @return int
      */
     public function getExpiresAt(): int;
 }

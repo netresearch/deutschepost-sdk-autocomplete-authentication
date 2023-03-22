@@ -13,7 +13,7 @@ library or SDK, for example [@netresearch/postdirekt-autocomplete-sdk](https://w
 
 ### System Requirements
 
-- PHP 7.1+ and 8.0+ with JSON extension
+- 8.1+ with JSON extension
 
 ### Package Requirements
 
@@ -37,41 +37,43 @@ library or SDK, for example [@netresearch/postdirekt-autocomplete-sdk](https://w
 - `phpunit/phpunit`: Testing framework
 - `php-http/mock-client`: HTTPlug mock client implementation
 - `phpstan/phpstan`: Static analysis tool
+- `rector/rector`: Refactoring tool
+- `fig/log-test`: Test utilities for `psr/log`
 - `squizlabs/php_codesniffer`: Static analysis tool
 
 ## Installation
 
 ```bash
-$ composer require deutschepost/sdk-api-autocomplete-authentication
+composer require deutschepost/sdk-api-autocomplete-authentication
 ```
 
 ## Uninstallation
 
 ```bash
-$ composer remove deutschepost/sdk-api-autocomplete-authentication
+composer remove deutschepost/sdk-api-autocomplete-authentication
 ```
 
 ## Testing
 
 ```bash
-$ ./vendor/bin/phpunit -c test/phpunit.xml
+composer run test
 ```
 
 ## Static code analysis
 
 ```bash
-$ ./vendor/bin/phpstan --level=7 analyze ./src/
+composer run phpstan
 ```
 
 ```bash
-$ ./vendor/bin/phpcs --standard=PSR12 src/ test/
+composer run lint
 ```
 
 ## Features
 
 The Deutsche Post Direkt DATAFACTORY Autocomplete API Authentication SDK supports the following features:
 
-* Create authentication token
+- Create authentication token
 
 ### Authentication
 
@@ -79,11 +81,11 @@ The Deutsche Post Direkt DATAFACTORY Autocomplete API Authentication SDK support
 
 The library's components suitable for consumption are
 
-* service:
-  * service factory
-  * authentication service
-* data transfer objects:
-  * authentication token
+- service:
+  - service factory
+  - authentication service
+- data transfer objects:
+  - authentication token
 
 #### Usage
 

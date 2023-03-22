@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PostDirekt\Sdk\Autocomplete\Authentication\Test\Service;
+namespace PostDirekt\Sdk\Autocomplete\Service;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client;
@@ -21,7 +21,7 @@ class AuthenticationServiceTest extends TestCase
      * @test
      * @throws ServiceException
      */
-    public function basicAuthenticationSucceeds()
+    public function basicAuthenticationSucceeds(): void
     {
         $statusCode = 200;
         $reasonPhrase = 'OK';
@@ -31,7 +31,7 @@ class AuthenticationServiceTest extends TestCase
         $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
         $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
 
-        $responseData = ['access_token' => 'token', 'expires_in_epoch_seconds' => 1579179612];
+        $responseData = ['access_token' => 'token', 'expires_in_epoch_seconds' => 1_579_179_612];
         $responseBody = json_encode($responseData);
         $response = $responseFactory
             ->createResponse($statusCode, $reasonPhrase)
@@ -56,7 +56,7 @@ class AuthenticationServiceTest extends TestCase
      * @test
      * @throws ServiceException
      */
-    public function basicAuthenticationFails()
+    public function basicAuthenticationFails(): void
     {
         $statusCode = 401;
         $reasonPhrase = 'Unauthorized';
