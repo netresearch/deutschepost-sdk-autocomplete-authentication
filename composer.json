@@ -57,10 +57,5 @@
         "test": "phpunit -c test/phpunit.xml",
         "phpstan": "phpstan --xdebug analyze src",
         "lint": "phpcs --standard=PSR12 src test"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-PDTWO-211": "1.3.x-dev"
-        }
     }
 }
