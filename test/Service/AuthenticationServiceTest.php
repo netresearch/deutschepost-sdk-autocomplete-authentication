@@ -18,9 +18,9 @@ use Psr\Log\Test\TestLogger;
 class AuthenticationServiceTest extends TestCase
 {
     /**
-     * @test
      * @throws ServiceException
      */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function basicAuthenticationSucceeds(): void
     {
         $statusCode = 200;
@@ -53,9 +53,9 @@ class AuthenticationServiceTest extends TestCase
     }
 
     /**
-     * @test
      * @throws ServiceException
      */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function basicAuthenticationFails(): void
     {
         $statusCode = 401;

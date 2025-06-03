@@ -3,18 +3,35 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
+use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
+use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Php82\Rector\Class_\ReadOnlyClassRector;
+use Rector\Php83\Rector\ClassConst\AddTypeToConstRector;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPaths([
         __DIR__ . '/src',
-        __DIR__ . '/test',
+        __DIR__ . '/test'
+    ])
+    ->withPhpVersion(PhpVersion::PHP_84)
+    ->withSets([
+        SetList::PHP_80,
+        SetList::PHP_81,
+        SetList::PHP_82,
+        SetList::PHP_83,
+        SetList::PHP_84
+    ])
+    ->withPHPStanConfigs(phpstanConfigs: [__DIR__ . '/phpstan.neon'])
+    ->withSets([
+        PHPUnitSetList::PHPUNIT_100
+    ])
+    ->withSkip([
+        // Skip specific rules if needed
+        ReadOnlyPropertyRector::class,
+        ReadOnlyClassRector::class,
+        AddTypeToConstRector::class,
+        ClassPropertyAssignToConstructorPromotionRector::class
     ]);
-
-    // define sets of rules
-    $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_81,
-        SetList::CODE_QUALITY
-    ]);
-};
